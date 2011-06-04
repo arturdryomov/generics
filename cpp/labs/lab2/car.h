@@ -25,6 +25,7 @@ private:
   void enterFromFile(string filename);
   void enterFromStdio();
   void addCar(vector<string> inputParts);
+  // comparsion methods should be static
   static bool compareYear(const Car first, const Car second);
   static bool compareBrand(const Car first, const Car second);
 };

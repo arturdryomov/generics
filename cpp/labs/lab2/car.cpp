@@ -2,11 +2,11 @@
 
 #include <iostream>
 #include <iomanip>
+#include <sstream>
+#include <fstream>
 #include <string>
 #include <vector>
-#include <sstream>
 #include <algorithm>
-#include <fstream>
 
 using namespace std;
 
@@ -35,6 +35,7 @@ void Cars::enterFromFile(string filename)
     inputParts.resize(5);
 
     for (vector<string>::iterator it = inputParts.begin(); it != inputParts.end(); ++it) {
+      // double check, we want at least five elements, but it could be not so good
       if (!inputFile.good()) {
         return;
       }
@@ -74,14 +75,15 @@ void Cars::addCar(vector<string> inputParts)
 
   car.model = inputParts[1];
 
+  // erase some symbols to normal converting
   inputParts[2].erase(inputParts[2].begin(), inputParts[2].begin() + 1);
   inputParts[2].erase(inputParts[2].end() - 2, inputParts[2].end());
-  istringstream ( inputParts[2] ) >> car.serial;
+  istringstream(inputParts[2]) >> car.serial;
 
   inputParts[3].erase(inputParts[3].end() - 1, inputParts[3].end());
-  istringstream ( inputParts[3] ) >> car.year;
+  istringstream(inputParts[3]) >> car.year;
 
-  istringstream ( inputParts[4] ) >> car.color;
+  istringstream(inputParts[4]) >> car.color;
 
   m_carsList.push_back(car);
 }
@@ -108,6 +110,7 @@ bool Cars::compareBrand(Car first, Car second)
 void Cars::printCarsInformation()
 {
   for (vector<Car>::iterator it = m_carsList.begin(); it != m_carsList.end(); ++it) {
+    // trying to be pleasant
     cout << setw(16) << (*it).brand 
          << setw(9) << (*it).model 
          << setw(8) << (*it).serial 
