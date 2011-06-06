@@ -15,10 +15,12 @@ void Cars::enterCarsInformation()
   cout << "Do you want enter information from file? (y/n): ";
   char key;
   cin >> key;
+  // Ignore that user pressed Return
+  cin.ignore(1, '\n');
   if (toupper(key) == 'Y') {
     cout << "Enter input file name: ";
     string filename;
-    cin >> filename;
+    getline(cin, filename);
     enterFromFile(filename);
   }
   else {
@@ -30,12 +32,17 @@ void Cars::enterFromFile(string filename)
 {
   fstream inputFile(filename.c_str());
 
+  if (inputFile.fail()) {
+    cout << "ERROR: There are no such file" << endl;
+    return;
+  }
+
   while (inputFile.good()) {
     vector<string> inputParts;
     inputParts.resize(5);
 
     for (vector<string>::iterator it = inputParts.begin(); it != inputParts.end(); ++it) {
-      // double check, we want at least five elements, but it could be not so good
+      // Double check, we want at least five elements, but it could be not so good
       if (!inputFile.good()) {
         return;
       }
@@ -70,12 +77,12 @@ void Cars::addCar(vector<string> inputParts)
 {
   Car car;
 
-  // lexical_cast from Boost will be better
+  // Lexical_cast from Boost will be better
   car.brand = inputParts[0];
 
   car.model = inputParts[1];
 
-  // erase some symbols to normal converting
+  // Erase some symbols to normal converting
   inputParts[2].erase(inputParts[2].begin(), inputParts[2].begin() + 1);
   inputParts[2].erase(inputParts[2].end() - 2, inputParts[2].end());
   istringstream(inputParts[2]) >> car.serial;
@@ -109,8 +116,8 @@ bool Cars::compareBrand(Car first, Car second)
 
 void Cars::printCarsInformation()
 {
-  for (vector<Car>::iterator it = m_carsList.begin(); it != m_carsList.end(); ++it) {
-    // trying to be pleasant
+  for (vector<Car>::const_iterator it = m_carsList.begin(); it != m_carsList.end(); ++it) {
+    // Trying to be pleasant
     cout << setw(16) << (*it).brand 
          << setw(9) << (*it).model 
          << setw(8) << (*it).serial 

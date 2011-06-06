@@ -5,7 +5,9 @@ using namespace std;
 
 void printVector(vector<double> array)
 {
-  for (vector<double>::iterator it = array.begin(); it != array.end(); it++) {
+  // const_iterators are faster than simple iterators
+  // Also there is beautiful "auto" in C++0x from GCC 4.4 
+  for (vector<double>::const_iterator it = array.begin(); it != array.end(); it++) {
     cout << *it << " ";
   }
   cout << endl;
