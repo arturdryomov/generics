@@ -7,6 +7,7 @@ from mutagen import mp3, id3
 
 discogs.user_agent = "TestApp/0.1"
 
+
 def get_cover_url(track_info):
   """ Gets URL to cover art.
   Returns: Discogs URL to cover art image if exists, in other
@@ -26,8 +27,9 @@ def get_cover_url(track_info):
       return cover["uri"]
   return None
 
+
 def download_cover(cover_url):
-  """ Downloads cover file. 
+  """ Downloads cover file.
   Returns: image file contents.
   Input: Discogs cover URL """
 
@@ -37,6 +39,7 @@ def download_cover(cover_url):
   cover_file = urllib2.urlopen(request)
   return cover_file.read()
 
+
 def get_track_info(track_filename):
   """ Gets information from MP3 tags.
   Returns: diction with "artist" and "album" fields.
@@ -45,18 +48,20 @@ def get_track_info(track_filename):
   track = mp3.MP3(track_filename)
   return {"artist": track["TPE1"].text, "album": track["TALB"].text}
 
-def write_cover(mp3_filename, cover_file):
+
+def write_cover(track_filename, cover_file):
   """ Writes cover image as tag to MP3 file.
   Returns: nothing.
   Input: MP3 filename, image contents."""
 
-  file = mp3.MP3(mp3_filename)
+  track = mp3.MP3(track_filename)
   # Get mime type of cover
   mimetypes.init()
   mime = mimetypes.guess_type("f.jpeg")
   # Write cover as tag
-  file.tags.add(id3.APIC(encoding=3, mime=mime[0], type=3, data=cover_file))
-  file.save(v1=2)
+  track.tags.add(id3.APIC(encoding=3, mime=mime[0], type=3, data=cover_file))
+  track.save(v1=2)
+
 
 def fill_covers(path):
   """ Fills cover tags in folder with MP3 files.
@@ -88,9 +93,9 @@ def fill_covers(path):
         print(":: Writing cover to file")
         write_cover(file_path, cover_file)
 
+
 if __name__ == "__main__":
   if len(sys.argv) > 1:
     fill_covers(sys.argv[1])
   else:
     print("Error: Input is not specified")
-
