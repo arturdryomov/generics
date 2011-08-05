@@ -4,7 +4,8 @@ LD = $(CC)
 
 # Flags of compiler
 RELEASE_FLAGS = -O2 -Wall
-DEBUG_FLAGS = -g -Wall 
+ANALYZE_FLAGS = --analyze
+DEBUG_FLAGS = -g -Wall
 EXTRA_DEBUG_FLAGS = $(DEBUG_FLAGS) \
 	-pedantic \
 	-Wextra \
@@ -21,8 +22,10 @@ BINARY_NAME = app
 # Directory of object files
 OBJ_DIR = objects
 
-# Names of object files
-objects = $(OBJ_DIR)/cool.o $(OBJ_DIR)/main.o
+# Names of files
+source = $(wildcard *.cpp)
+objects = $(patsubst %.cpp, $(OBJ_DIR)/%.o, $(source))
+
 
 # Targets
 all:
@@ -31,6 +34,11 @@ all:
 prepare:
 	@mkdir -p $(OBJ_DIR)
 
+clean:
+	@rm -rf $(OBJ_DIR) $(BINARY_NAME)
+
+analyze:
+	$(CC) $(ANALYZE_FLAGS) $(source)
 
 release: CC_FLAGS = $(RELEASE_FLAGS)
 release: prepare build
@@ -47,7 +55,3 @@ build: $(objects)
 
 $(objects): $(OBJ_DIR)/%.o: %.cpp
 	$(CC) $(CC_FLAGS) $< -c -o $@
-
-
-clean:
-	@rm -rf $(OBJ_DIR) $(BINARY_NAME)
