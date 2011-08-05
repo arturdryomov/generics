@@ -88,7 +88,7 @@ def fill_covers(path):
           cover_url = get_cover_url(track_info)
           if cover_url is None:
             print("Sorry, no cover for such album")
-            sys.exit()
+            return
           cover_file = download_cover(cover_url)
         print(":: Writing cover to file")
         write_cover(file_path, cover_file)
