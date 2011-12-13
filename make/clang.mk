@@ -1,11 +1,15 @@
-# Compiler and linker
+# Use `scan-build make` for using Clang analyzer
+
+# Options
+
+## Compiler and linker
 CC = clang++
 LD = $(CC)
 
-# Flags of compiler
-RELEASE_FLAGS = -O2 -Wall
-ANALYZE_FLAGS = --analyze
-DEBUG_FLAGS = -g -Wall
+## Flags of compiler
+COMMON_FLAGS = -fcolor-diagnostics
+RELEASE_FLAGS = -O2 $(COMMON_FLAGS)
+DEBUG_FLAGS = -g -Wall $(COMMON_FLAGS)
 EXTRA_DEBUG_FLAGS = $(DEBUG_FLAGS) \
 	-pedantic \
 	-Wextra \
@@ -16,18 +20,19 @@ EXTRA_DEBUG_FLAGS = $(DEBUG_FLAGS) \
 	-Wunreachable-code \
 	-Winit-self
 
-# Output binary name
+## Output binary name
 BINARY_NAME = app
 
-# Directory of object files
+## Directory of object files
 OBJ_DIR = objects
 
-# Names of files
+## Names of files (source is all that ends with .cpp)
 source = $(wildcard *.cpp)
 objects = $(patsubst %.cpp, $(OBJ_DIR)/%.o, $(source))
 
 
 # Targets
+
 all:
 	make release
 
@@ -37,8 +42,8 @@ prepare:
 clean:
 	@rm -rf $(OBJ_DIR) $(BINARY_NAME)
 
-analyze:
-	$(CC) $(ANALYZE_FLAGS) $(source)
+
+## Just change flags for every build type
 
 release: CC_FLAGS = $(RELEASE_FLAGS)
 release: prepare build
