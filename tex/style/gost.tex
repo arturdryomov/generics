@@ -1,0 +1,231 @@
+\documentclass[
+  russian, utf8, 12pt,
+  nocolumnsxix, nocolumnxxxi, nocolumnxxxii,
+  hpadding=5mm]
+{eskdtext}
+
+
+% Fonts and typography
+
+%% Enable typography stuff
+\usepackage[no-math]{fontspec}
+\defaultfontfeatures{Mapping=tex-text}
+
+%% Enable math
+\usepackage{amsmath}
+\usepackage{mathtext}
+
+%% Cyrillic special for ESKD
+%% Also ESKD uses Babel, so no Polyglossia here
+\usepackage{xecyr}
+\usepackage{xltxtra}
+
+%% Fonts
+
+\setmainfont{CMU Serif}
+\setsansfont{CMU Sans Serif}
+\setmonofont{CMU Typewriter Text}
+
+%% Goodbye, Italic everywhere in ESKDX
+\renewcommand{\ESKDfontShape}{\sffamily\itshape}
+
+
+% Page
+
+%% Use contents
+\usepackage{titletoc}
+
+%% Show only sections and subsections in TOC
+\setcounter{tocdepth}{2}
+
+%% Set line spacing
+\usepackage{setspace}
+\setstretch{1.1}
+
+%% Enable first indention in section
+\usepackage{indentfirst}
+\parindent=2em
+
+%% Adjust sections, paragraphs styles and vertical margins
+
+\ESKDsectSkip{section}{3.5ex}{3.0ex}
+\ESKDsectSkip{subsection}{2.5ex}{2.5ex}
+\ESKDsectSkip{subsubsection}{2.5ex}{2.5ex}
+
+\ESKDsectStyle{section}{\Large\bfseries\uppercase}
+\ESKDsectStyle{subsection}{\Large\bfseries}
+\ESKDsectStyle{subsubsection}{\large\bfseries}
+
+\makeatletter
+\renewcommand\paragraph{
+  \@startsection{subparagraph}{4}{\parindent}
+    {2.5ex}{2.5ex}
+    {\normalfont\normalsize\bfseries}}
+\makeatother
+
+\makeatletter
+\renewcommand\subparagraph{
+  \@startsection{subparagraph}{5}{\parindent}
+    {2.5ex}{2.5ex}
+    {\normalfont\small\bfseries}}
+\makeatother
+
+%% Start every section from new page
+\let\stdsection\section
+\renewcommand\section{\clearpage\stdsection}
+
+
+% Colors
+
+\usepackage{xcolor}
+
+%% Tango color palette
+\definecolor{LightButter}{rgb}{0.98,0.91,0.31}
+\definecolor{LightOrange}{rgb}{0.98,0.68,0.24}
+\definecolor{LightChocolate}{rgb}{0.91,0.72,0.43}
+\definecolor{LightChameleon}{rgb}{0.54,0.88,0.20}
+\definecolor{LightSkyBlue}{rgb}{0.45,0.62,0.81}
+\definecolor{LightPlum}{rgb}{0.68,0.50,0.66}
+\definecolor{LightScarletRed}{rgb}{0.93,0.16,0.16}
+\definecolor{Butter}{rgb}{0.93,0.86,0.25}
+\definecolor{Orange}{rgb}{0.96,0.47,0.00}
+\definecolor{Chocolate}{rgb}{0.75,0.49,0.07}
+\definecolor{Chameleon}{rgb}{0.45,0.82,0.09}
+\definecolor{SkyBlue}{rgb}{0.20,0.39,0.64}
+\definecolor{Plum}{rgb}{0.46,0.31,0.48}
+\definecolor{ScarletRed}{rgb}{0.80,0.00,0.00}
+\definecolor{DarkButter}{rgb}{0.77,0.62,0.00}
+\definecolor{DarkOrange}{rgb}{0.80,0.36,0.00}
+\definecolor{DarkChocolate}{rgb}{0.56,0.35,0.01}
+\definecolor{DarkChameleon}{rgb}{0.30,0.60,0.02}
+\definecolor{DarkSkyBlue}{rgb}{0.12,0.29,0.53}
+\definecolor{DarkPlum}{rgb}{0.36,0.21,0.40}
+\definecolor{DarkScarletRed}{rgb}{0.64,0.00,0.00}
+\definecolor{Aluminium1}{rgb}{0.93,0.93,0.92}
+\definecolor{Aluminium2}{rgb}{0.82,0.84,0.81}
+\definecolor{Aluminium3}{rgb}{0.73,0.74,0.71}
+\definecolor{Aluminium4}{rgb}{0.53,0.54,0.52}
+\definecolor{Aluminium5}{rgb}{0.33,0.34,0.32}
+\definecolor{Aluminium6}{rgb}{0.18,0.20,0.21}
+
+
+% Other stuff
+
+% Hyperref
+\usepackage[colorlinks,breaklinks, bookmarks=true, xetex]{hyperref}
+
+%% Do not use Mono font for URL
+\urlstyle{same}
+
+\hypersetup{
+  linkcolor = DarkSkyBlue,
+  citecolor = DarkSkyBlue,
+  filecolor = DarkSkyBlue,
+  urlcolor  = DarkSkyBlue,
+}
+
+%% Use long tables
+\usepackage{longtable}
+
+%% Setup table alignment
+\usepackage{tabularx}
+\newcolumntype{L}{>{\raggedright\arraybackslash}X}
+\newcolumntype{P}[1]{>{\raggedright\arraybackslash}p{#1}}
+
+%% Insert PDF files
+\usepackage[final]{pdfpages}
+
+% GOST UTF-8 custom style for listing literature
+\bibliographystyle{utf8gost71u}
+
+
+% Custom commands
+
+%% File system
+\newcommand{\fs}{\textit}
+
+%% Term
+\newcommand{\term}{\textit}
+
+%% Expression
+\newcommand{\expr}{\textit}
+
+%% Code literal
+\newcommand{\code}{\texttt}
+
+%% Inline code
+\usepackage{minted}
+\newminted[inlinecode]{text}{fontsize=\footnotesize}
+
+%% Source code from file
+\usemintedstyle{tango}
+\newcommand{\source}[2]
+{
+  \inputminted[
+    frame=single,
+    linenos,
+    numbersep=-12pt,
+    framesep=20pt,
+    tabsize=2,
+    fontsize=\footnotesize
+  ]{#1}{#2}
+}
+
+%% Insert image
+\usepackage{graphicx}
+\newcommand{\image}[2][1]
+{
+  \begin{center}
+    \includegraphics[width=#1\textwidth]{#2}
+  \end{center}
+}
+
+
+% ESKD hacks
+
+%% Make font used in main inscription smaller
+\renewcommand{\ESKDfontVII}{\ESKDfontV}
+
+%% Remove name of appendix from top of the page, it will be in inscription
+\makeatletter
+\renewcommand{\ESKDappendix}[2]{%
+  \ESKDclearDoublePage%
+  \refstepcounter{appendix}%
+  \setcounter{point}{0}%
+  \ifESKD@point@style@single%
+    \renewcommand{\thepoint}{\theappendix.\arabic{point}}%
+  \fi
+  \setcounter{section}{0}%
+  \renewcommand{\thesection}{\theappendix.\arabic{section}}%
+  \setcounter{equation}{0}%
+  \renewcommand{\theequation}{\theappendix.\arabic{equation}}%
+  \setcounter{figure}{0}%
+  \renewcommand{\thefigure}{\theappendix.\arabic{figure}}%
+  \setcounter{table}{0}%
+  \renewcommand{\thetable}{\theappendix.\arabic{table}}%
+  \addcontentsline{toc}{section}{\appendixname\ \theappendix\ #2}%
+  \begin{list}{}{%
+    \setlength{\itemindent}{0mm}%
+    \setlength{\labelwidth}{0mm}%
+    \setlength{\labelsep}{0mm}%
+    \setlength{\leftmargin}{0mm}%
+    \setlength{\topsep}{0mm}%
+    \setlength{\parskip}{0mm}%
+    \setlength{\partopsep}{0mm}%
+    \setlength{\itemsep}{0mm}%
+    \setlength{\parsep}{0mm}}
+    \item\centering\appendixname\ \theappendix
+    \ifx#1\@empty\else\\(#1)\fi\\
+  \end{list}%
+  \par\nobreak\addvspace{\ESKDappendixSkip}}
+\makeatother
+
+% Appendix configuration: main inscription is second GOST form,
+% place appendix name in inscription 
+\let\ESKDappendixOld\ESKDappendix
+\renewcommand{\ESKDappendix}[2]
+{
+  \ESKDappendixOld{#1}{#2}
+  \ESKDthisStyle{formII}
+  \ESKDcolumnI{#2}
+}

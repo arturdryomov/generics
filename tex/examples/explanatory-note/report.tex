@@ -1,0 +1,59 @@
+\input{../../style/gost.tex}
+
+% PDF properties
+\hypersetup
+{
+  pdfauthor={Дрёмов Артур}
+  pdfsubject={Пояснительная записка},
+  pdftitle={Пояснительная записка},
+  pdfkeywords={TeX}
+}
+
+\ESKDsignature{КР-0910136-ДО-2011}
+\ESKDtitle{Пояснительная записка}
+\ESKDauthor{Дрёмов~А.~Э.}
+\ESKDchecker{X~X.~X.}
+\ESKDgroup{ПГУ, группа 09-ИТ-2}
+
+\begin{document}
+
+  \ESKDthisStyle{title}
+  \includepdf[pages=-]{title/title.pdf}
+
+  % Contents is third list (second is assignment)
+  \setcounter{page}{3}
+  \ESKDthisStyle{formII}
+  \tableofcontents
+  
+  \section*{Введение}
+  \addcontentsline{toc}{section}{Введение}
+
+  \section{Обзор проблемной области}
+
+    \subsection{Аналоги}
+
+    \subsection{Технологии}
+
+  \section{Технический проект}
+
+    \subsection{Математическое обеспечение}
+
+    \subsection{Программное обеспечение}
+
+    \subsection{Функциональная структура}
+
+  \section{Реализация, тестирование, отладка}
+
+    \subsection{Особенности реализации}
+
+    \subsection{Результаты тестирования}
+
+  \section*{Заключение}
+  \addcontentsline{toc}{section}{Заключение}
+
+  \nocite{*}
+  \bibliography{literature}
+
+  \ESKDappendix{Обязательное}{Диаграмма}
+
+\end{document}

@@ -14,14 +14,13 @@
 # Build with make twice for currect table of contents.
 
 CC = xelatex
-CC_FLAGS = -shell-escape
 
-MAIN_FILENAME = template
+MAIN_FILENAME = title
 
 all:
-	$(CC) $(CC_FLAGS) $(MAIN_FILENAME).tex
+	$(CC) $(MAIN_FILENAME).tex
 
 clean:
 	@rm -f $(MAIN_FILENAME).aux $(MAIN_FILENAME).log
 	@rm -f $(MAIN_FILENAME).out $(MAIN_FILENAME).pdf
-	@rm -f $(MAIN_FILENAME).toc $(MAIN_FILENAME).pyg
+	@rm -f $(MAIN_FILENAME).toc

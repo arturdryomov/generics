@@ -1,38 +1,42 @@
-% Font size, document type
 \documentclass[a4paper, 12pt]{article}
 
-% Enable typography stuff
+
+% Fonts and typography
+
+%% Enable typography stuff
 \usepackage[no-math]{fontspec}
 \defaultfontfeatures{Mapping=tex-text}
 
-% Math settings
+%% Enable math
 \usepackage{unicode-math}
 \usepackage{amsmath}
 \usepackage{mathtext}
 
-% Fonts configuration
-%  Main
-%\setmainfont{Droid Sans}
+%% Fonts
+
 \setmainfont{Linux Libertine}
-%  Sans
+
 \newfontfamily\cyrillicfontsf[Scale=MatchLowercase]{PT Sans}
 \setsansfont{PT Sans}
-%  Mono  
+
 \newfontfamily\cyrillicfonttt[Scale=MatchLowercase]{Droid Sans Mono}
 \setmonofont{Droid Sans Mono}
-%  Math
+
 \setmathfont[range=\mathit]{Asana Math}
 \setmathfont{Asana Math}
-%  Set Sans font in titles
+
+%% Set Sans font in titles
 \usepackage{sectsty}
 \allsectionsfont{\sffamily}
 
-% Languages define
+% Configure polyglossia languages
 \usepackage{polyglossia}
 \setdefaultlanguage{russian}
 \setotherlanguage{english}
 
-% Page settings
+
+% Page
+
 \usepackage{geometry}
 \geometry{
   left   = 2cm,
@@ -41,20 +45,23 @@
   bottom = 2 cm
 }
 
-% Use contents
+%% Use contents
 \usepackage{titletoc}
 
 % Set line spacing
 \usepackage{setspace}
 \setstretch{1.1}
 
-% Set first indention in section
+% Enable first indention in section
 \usepackage{indentfirst}
 \parindent=2em
 
-% Color configuration 
+
+% Colors
+
 \usepackage{xcolor}
-%  Tango color palette
+
+%% Tango color palette
 \definecolor{LightButter}{rgb}{0.98,0.91,0.31}
 \definecolor{LightOrange}{rgb}{0.98,0.68,0.24}
 \definecolor{LightChocolate}{rgb}{0.91,0.72,0.43}
@@ -83,8 +90,15 @@
 \definecolor{Aluminium5}{rgb}{0.33,0.34,0.32}
 \definecolor{Aluminium6}{rgb}{0.18,0.20,0.21}
 
-% Hyperref set
-\usepackage[colorlinks,breaklinks, bookmarks=true, xetex]{hyperref}
+
+% Other stuff
+
+%% Hyperref
+\usepackage[colorlinks, breaklinks, bookmarks=true, xetex]{hyperref}
+
+%% Do not use Mono font for URL
+\urlstyle{same}
+
 \hypersetup{
   linkcolor = DarkSkyBlue,
   citecolor = DarkSkyBlue,
@@ -92,34 +106,37 @@
   urlcolor  = DarkSkyBlue,
 }
 
-% Use long tables
+%% Use long tables
 \usepackage{longtable}
 
-% Custom cmmmands
-%  File system
-\newcommand{\fs}{\textit} 
-%  Short code
+%% Setup table alignment
+\usepackage{tabularx}
+\newcolumntype{L}{>{\raggedright\arraybackslash}X}
+\newcolumntype{P}[1]{>{\raggedright\arraybackslash}p{#1}}
+
+%% Insert PDF files
+\usepackage[final]{pdfpages}
+
+
+% Custom commands
+
+%% Term
+\newcommand{\term}{\textit}
+
+%% Expression
+\newcommand{\expr}{\textit}
+
+%% File system
+\newcommand{\fs}{\textit}
+
+%% Code
 \newcommand{\code}{\texttt}
-%  Insert image
-\usepackage{graphicx}
-\newcommand{\image}[2][1]
-{
-	\begin{center}
-    \includegraphics[width=#1\textwidth]{#2}
-  \end{center}
-}
-%  Insert not so short and not so big code
-\usepackage{verbatim}
-\newenvironment{inlinecode}
-{
-  \renewcommand{\baselinestretch}{1}
-  \small\verbatim
-}
-{
-  \endverbatim
-}
-%  Source files
+
+%% Inline code
 \usepackage{minted}
+\newminted[inlinecode]{text}{fontsize=\footnotesize}
+
+%% Source code from file
 \usemintedstyle{tango}
 \newcommand{\source}[2]
 {
@@ -128,6 +145,16 @@
     linenos,
     numbersep=-12pt,
     framesep=20pt,
+    tabsize=2,
     fontsize=\footnotesize
   ]{#1}{#2}
+}
+
+%% Insert image
+\usepackage{graphicx}
+\newcommand{\image}[2][1]
+{
+  \begin{center}
+    \includegraphics[width=#1\textwidth]{#2}
+  \end{center}
 }
