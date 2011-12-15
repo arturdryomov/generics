@@ -1,15 +1,12 @@
-# Use `scan-build make` for using Clang analyzer
-
 # Options
 
 ## Compiler and linker
-CC = clang++
+CC = g++
 LD = $(CC)
 
 ## Flags of compiler
-COMMON_FLAGS = -fcolor-diagnostics
-RELEASE_FLAGS = -O2 $(COMMON_FLAGS)
-DEBUG_FLAGS = -g -Wall $(COMMON_FLAGS)
+RELEASE_FLAGS = -O2
+DEBUG_FLAGS = -g -Wall
 EXTRA_DEBUG_FLAGS = $(DEBUG_FLAGS) \
 	-pedantic \
 	-Wextra \
