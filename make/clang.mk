@@ -3,8 +3,8 @@
 # Options
 
 ## Compiler and linker
-CC = clang++
-LD = $(CC)
+CXX = clang++
+LD = $(CXX)
 
 ## Flags of compiler
 COMMON_FLAGS = -fcolor-diagnostics
@@ -45,18 +45,18 @@ clean:
 
 ## Just change flags for every build type
 
-release: CC_FLAGS = $(RELEASE_FLAGS)
+release: CCX_FLAGS = $(RELEASE_FLAGS)
 release: prepare build
 
-debug: CC_FLAGS = $(DEBUG_FLAGS)
+debug: CCX_FLAGS = $(DEBUG_FLAGS)
 debug: prepare build
 
-extra_debug: CC_FLAGS = $(EXTRA_DEBUG_FLAGS)
+extra_debug: CCX_FLAGS = $(EXTRA_DEBUG_FLAGS)
 extra_debug: prepare build
 
 
 build: $(objects)
-	$(LD) $(CC_FLAGS) $(objects) -o $(BINARY_NAME)
+	$(LD) $(CCX_FLAGS) $(objects) -o $(BINARY_NAME)
 
 $(objects): $(OBJ_DIR)/%.o: %.cpp
-	$(CC) $(CC_FLAGS) $< -c -o $@
+	$(CXX) $(CCX_FLAGS) $< -c -o $@
