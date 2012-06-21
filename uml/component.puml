@@ -1,0 +1,11 @@
+@startuml
+
+  left to right direction
+
+
+  component "Приложение" as application
+  component "Авторизационный компонент Dropbox" as dropboxAuth
+
+  application --> dropboxAuth
+
+@enduml

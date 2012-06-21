@@ -1,0 +1,44 @@
+@startuml
+
+  left to right direction
+
+  skinparam packageStyle rect
+
+
+  actor "Пользователь" as customer
+
+  package "Bus Time" {
+    usecase "Просмотр маршрутов" as listRoutes
+    usecase "Просмотр остановок" as listStations
+    usecase "Просмотр расписания" as listTimetable
+    usecase "Синхронизация" as sync
+
+    usecase "Создание маршрута" as createRoute
+    usecase "Изменение маршрута" as editRoute
+    usecase "Удаление маршрута" as removeRoute
+
+    usecase "Создание остановки" as createStation
+    usecase "Изменение остановки" as editStation
+    usecase "Удаление остановки" as removeStation
+
+    usecase "Определение местоположения" as detectLocation
+
+    customer -- listRoutes
+    customer -- listStations
+    customer -- listTimetable
+    customer -- sync
+
+    listRoutes .> listStations : <<extends>>
+    listTimetable .> listStations : <<extends>>
+
+    listRoutes ..> createRoute : <<include>>
+    listRoutes ..> editRoute : <<include>>
+    listRoutes ..> removeRoute : <<include>>
+
+    listStations ..> createStation : <<include>>
+    listStations ..> editStation : <<include>>
+    listStations ..> removeStation : <<include>>
+    listStations ..> detectLocation : <<include>>
+  }
+
+@enduml

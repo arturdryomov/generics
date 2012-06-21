@@ -1,0 +1,72 @@
+@startuml
+
+  skinparam classAttributeIconSize 0
+  hide circle
+
+
+  class DbProvider {
+    + getInstance() : DbProvider
+    + getInstance(context: Context): DbProvider
+    + getRoutes(): Routes
+    + getStations(): Stations
+  }
+
+  class Station {
+    + getId(): long
+    + getName(): String
+    + getLatitude(): double
+    + getLongitude(): double
+    + setName(name: String)
+    + setLocation(latitude: double, longitude: double)
+    + insertShiftTimeForRoute(route: Route, time: Time)
+    + removeShiftTimeForRoute(route: Route)
+    + getShiftTimeForRoute(route: Route): Time
+    + getTimetableForRoute(route: Route): List<Time>
+  }
+
+  class Route {
+    + getId(): long
+    + getName(): String
+    + insertDepartureTime(time: Time)
+    + removeDepartureTime(time: Time)
+    + getDepartureTimetable(): List<Time>
+  }
+
+  interface Parcelable {
+  }
+
+  class Stations {
+    + createStation(name: String, latitude: double, longitude: double): Station
+    + deleteStation(station: Station)
+    + getStationsList(): List<Station>
+    + getStationsList(route: Route): List<Station>
+    + getStationsList(latitude: double, longitude: double): List<Station>
+    + getStationsList(route: Route, latitude: double, longitude: double): List<Station>
+  }
+
+  class Routes {
+    + createRoute(name: String): Route
+    + deleteRoute(route: Route)
+    + getRoutesList(): List<Route>
+    + getRoutesList(station: Station): List<Route>
+  }
+
+  class Synchronizer {
+    + exportDatabase(exportDatabasePath: String)
+    + importDatabase(importDatabasePath: String)
+    + importDatabase(importDatabasePath: String, isUpdatingEnabled: boolean)
+  }
+
+  Station ..|> Parcelable
+  Route ..|> Parcelable
+
+  Stations --o Station
+  Routes --o Route
+
+  Stations --* DbProvider
+  Routes --* DbProvider
+
+  Stations --* Synchronizer
+  Routes --* Synchronizer
+
+@enduml

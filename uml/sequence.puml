@@ -1,0 +1,32 @@
+@startuml
+
+  hide footbox
+
+  skinparam sequenceMessageAlign center
+
+
+  participant ":Activity" as Activity
+  participant ":DbProvider" as DbProvider
+  participant ":Routes" as Routes
+
+  [-> Activity: routeName
+  activate Activity
+
+  Activity -> DbProvider: getInstance()
+  activate DbProvider
+  DbProvider --> Activity: instance
+  deactivate DbProvider
+
+  Activity -> DbProvider: getRoutes()
+  activate DbProvider
+  DbProvider --> Activity: routes
+  deactivate DbProvider
+
+  Activity -> Routes: createRoute(routeName)
+  activate Routes
+  Routes --> Activity: route
+  deactivate Routes
+
+  deactivate Activity
+
+@enduml
