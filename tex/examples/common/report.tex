@@ -4,10 +4,12 @@
 \addbibresource{literature.bib}
 
 
+\newcommand{\subject}{Отчёт по выполнению лабораторной работы \textnumero\ 1}
+
 % PDF information
 \hypersetup {
-  pdfsubject={Отчёт по выполнению лабораторной работы},
-  pdftitle={Отчёт по выполнению лабораторной работы \textnumero\ 3}
+  pdfsubject = {\subject},
+  pdftitle = {\subject}
 }
 
 
@@ -16,8 +18,10 @@
   \input{title}
   \setcounter{page}{2}
 
+
   \tableofcontents
   \newpage
+
 
   \section{Цели занятия}
 
@@ -27,9 +31,11 @@
 
   \section{Вывод}
 
+
   \newpage
   \nocite{*}
   \printbibliography
+
 
   \newpage
   \section{Приложение} \label{sec:addon}

@@ -1,13 +1,13 @@
 \input{../../preamble/gost.tex}
 
-% PDF properties
-\hypersetup
-{
-  pdfauthor={Дрёмов Артур}
-  pdfsubject={Пояснительная записка},
-  pdftitle={Пояснительная записка},
-  pdfkeywords={TeX}
+
+\newcommand{\subject}{Пояснительная записка}
+
+\hypersetup {
+  pdfsubject={\subject},
+  pdftitle={\subject}
 }
+
 
 \ESKDsignature{КР-0910136-ДО-2011}
 \ESKDtitle{Пояснительная записка}
@@ -15,15 +15,18 @@
 \ESKDchecker{X~X.~X.}
 \ESKDgroup{ПГУ, группа 09-ИТ-2}
 
+
 \begin{document}
 
   \ESKDthisStyle{title}
   \includepdf[pages=-]{title/title.pdf}
 
+
   % Contents is third list (second is assignment)
   \setcounter{page}{3}
   \ESKDthisStyle{formII}
   \tableofcontents
+
   
   \section*{Введение}
   \addcontentsline{toc}{section}{Введение}
@@ -51,8 +54,10 @@
   \section*{Заключение}
   \addcontentsline{toc}{section}{Заключение}
 
+
   \nocite{*}
   \bibliography{literature}
+
 
   \ESKDappendix{Обязательное}{Диаграмма}
 
