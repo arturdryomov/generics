@@ -120,6 +120,14 @@
 %% Use nice fractions
 \usepackage{nicefrac}
 
+%% Format paragraphs
+\makeatletter
+\renewcommand\paragraph{
+  \@startsection{paragraph}{4}{\parindent}
+    {2.5ex}{2.5ex}
+    {\normalfont\normalsize\bfseries}}
+\makeatother
+
 
 % Custom commands
 
