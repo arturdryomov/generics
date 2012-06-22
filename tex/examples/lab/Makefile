@@ -1,27 +1,23 @@
-# For currect building you need to install some packages.
-# Arch Linux:
-#  texlive-core
-#  texlive-langcyrillic
-#  texlive-latexextra
-#  xelatex-stuff (AUR)
-#  ttf-droid
-#  ttf-linux-libertine
-#  ttf-paratype (AUR)
-#  python-pygments
-# Also you need Asana Math font for formulas. You could 
-# download it yourself or get very huge texlive-fontsextra 
-# package, which contains this font and many others.
-# Build with make twice for currect table of contents.
+TEX_BUILDER = xelatex
+TEX_BUILDER_FLAGS = --shell-escape
 
-CC = xelatex
-CC_FLAGS = -shell-escape
+DOCUMENT_BUILDER = latexmk
+DOCUMENT_BUILDER_FLAGS = \
+	-pdf \
+	-pdflatex="$(TEX_BUILDER) $(TEX_BUILDER_FLAGS)"
 
-MAIN_FILENAME = report
+MAIN_DOCUMENT_FILENAME = report
+
 
 all:
-	$(CC) $(CC_FLAGS) $(MAIN_FILENAME).tex
+	$(DOCUMENT_BUILDER) $(DOCUMENT_BUILDER_FLAGS) $(MAIN_DOCUMENT_FILENAME).tex
+
+preview:
+	$(DOCUMENT_BUILDER) $(DOCUMENT_BUILDER_FLAGS) -pvc $(MAIN_DOCUMENT_FILENAME).tex
 
 clean:
-	@rm -f $(MAIN_FILENAME).aux $(MAIN_FILENAME).log
-	@rm -f $(MAIN_FILENAME).out $(MAIN_FILENAME).pdf
-	@rm -f $(MAIN_FILENAME).toc $(MAIN_FILENAME).pyg
+	$(DOCUMENT_BUILDER) -C
+	make clean-minted
+
+clean-minted:
+	rm -f $(MAIN_DOCUMENT_FILENAME).pyg
