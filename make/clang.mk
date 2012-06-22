@@ -1,12 +1,6 @@
-# Use `scan-build make` for using Clang analyzer
-
-# Options
-
-## Compiler and linker
 CXX = clang++
 LD = $(CXX)
 
-## Flags of compiler
 COMMON_FLAGS = -fcolor-diagnostics
 RELEASE_FLAGS = -O2 $(COMMON_FLAGS)
 DEBUG_FLAGS = -g -Wall $(COMMON_FLAGS)
@@ -20,30 +14,23 @@ EXTRA_DEBUG_FLAGS = $(DEBUG_FLAGS) \
 	-Wunreachable-code \
 	-Winit-self
 
-## Output binary name
+
 BINARY_NAME = app
+OBJECTS_DIRECTORY = objects
 
-## Directory of object files
-OBJ_DIR = objects
-
-## Names of files (source is all that ends with .cpp)
 source = $(wildcard *.cpp)
-objects = $(patsubst %.cpp, $(OBJ_DIR)/%.o, $(source))
+objects = $(patsubst %.cpp, $(OBJECTS_DIRECTORY)/%.o, $(source))
 
-
-# Targets
 
 all:
 	make release
 
 prepare:
-	@mkdir -p $(OBJ_DIR)
+	@mkdir -p $(OBJECTS_DIRECTORY)
 
 clean:
-	@rm -rf $(OBJ_DIR) $(BINARY_NAME)
+	@rm -rf $(OBJECTS_DIRECTORY) $(BINARY_NAME)
 
-
-## Just change flags for every build type
 
 release: CCX_FLAGS = $(RELEASE_FLAGS)
 release: prepare build
@@ -58,5 +45,5 @@ extra_debug: prepare build
 build: $(objects)
 	$(LD) $(CCX_FLAGS) $(objects) -o $(BINARY_NAME)
 
-$(objects): $(OBJ_DIR)/%.o: %.cpp
+$(objects): $(OBJECTS_DIRECTORY)/%.o: %.cpp
 	$(CXX) $(CCX_FLAGS) $< -c -o $@
