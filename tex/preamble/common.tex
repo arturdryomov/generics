@@ -1,7 +1,8 @@
 \documentclass[a4paper, 12pt]{article}
 
 
-% Fonts and typography
+
+% Typography
 
 %% Enable typography stuff
 \usepackage[no-math]{fontspec}
@@ -12,7 +13,17 @@
 \usepackage{amsmath}
 \usepackage{mathtext}
 
-%% Fonts
+
+
+% Polyglossia
+
+\usepackage{polyglossia}
+\setdefaultlanguage{russian}
+\setotherlanguage{english}
+
+
+
+% Fonts
 
 \setmainfont{Linux Libertine}
 
@@ -29,19 +40,16 @@
 \usepackage{sectsty}
 \allsectionsfont{\sffamily}
 
-% Configure polyglossia languages
-\usepackage{polyglossia}
-\setdefaultlanguage{russian}
-\setotherlanguage{english}
 
 
-% Page
+% Page setup
 
 \usepackage{geometry}
-\geometry{
-  left   = 2cm,
-  right  = 2cm,
-  top    = 1.5cm,
+
+\geometry {
+  left = 2cm,
+  right = 2cm,
+  top = 1.5cm,
   bottom = 2 cm
 }
 
@@ -54,7 +62,8 @@
 
 % Enable first indention in section
 \usepackage{indentfirst}
-\parindent=2em
+\parindent = 2em
+
 
 
 % Colors
@@ -91,30 +100,51 @@
 \definecolor{Aluminium6}{rgb}{0.18,0.20,0.21}
 
 
-% Other stuff
 
-%% Hyperref
-\usepackage[colorlinks, breaklinks, bookmarks=true, xetex]{hyperref}
+% PDF configuration
 
-%% Do not use Mono font for URL
-\urlstyle{same}
+%% * breaklinks — allow links to break across lines
+%% * xetex — backend sign
+%% * bookmarks — provide PDF bookmarks
+\usepackage[breaklinks, xetex, bookmarks]{hyperref}
 
-\hypersetup{
+%% * linkcolor — local links
+%% * citecolor — citations
+%% * urlcolor — URLs
+\hypersetup {
+  colorlinks,
   linkcolor = DarkSkyBlue,
   citecolor = DarkSkyBlue,
-  filecolor = DarkSkyBlue,
   urlcolor  = DarkSkyBlue,
 }
+
+%% PDF information
+\hypersetup {
+  pdfauthor = {Дрёмов Артур},
+  pdfcreator = {XeTeX}
+}
+
+%% Don’t use Mono font for URLs
+\urlstyle{same}
+
+
+
+
+% Tables
 
 %% Use long tables
 \usepackage{longtable}
 
-%% Setup table alignment
+%% Table alignment
 \usepackage{tabularx}
 \newcolumntype{L}{>{\raggedright\arraybackslash}X}
 \newcolumntype{P}[1]{>{\raggedright\arraybackslash}p{#1}}
 
-%% Insert PDF files
+
+
+% Other options
+
+%% Provide PDF files inserting
 \usepackage[final]{pdfpages}
 
 %% Use nice fractions
@@ -130,6 +160,7 @@
 
 %% Use clever appendix provider
 \usepackage[titletoc, title]{appendix}
+
 
 
 % Custom commands
@@ -164,7 +195,7 @@
   ]{#1}{#2}
 }
 
-%% Insert image
+%% Image
 \usepackage{graphicx}
 \newcommand{\image}[2][1]
 {
