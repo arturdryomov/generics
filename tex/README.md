@@ -8,6 +8,10 @@ distributions.
 * `texlive-core`
 * `texlive-langcyrillic`
 * `texlive-latexextra`
+* `texlive-bibtexextra`
+
+Package `texlive-bibtexextra` used only for `common` preamble for BibLaTeX and
+Biber support. `gost` preamble uses BibTeX.
 
 ## Fonts
 

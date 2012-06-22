@@ -1,6 +1,7 @@
 \input{../../preamble/common.tex}
 
 \graphicspath{{./images/}}
+\addbibresource{literature.bib}
 
 
 % PDF information
@@ -27,7 +28,10 @@
   \section{Вывод}
 
   \newpage
+  \nocite{*}
+  \printbibliography
 
+  \newpage
   \section{Приложение} \label{sec:addon}
 
     \subsection{Реализация}
