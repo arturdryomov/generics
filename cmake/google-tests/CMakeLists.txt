@@ -1,4 +1,4 @@
-cmake_minimum_required(VERSION 2.6)
+cmake_minimum_required (VERSION 2.8)
 
 set (PROJECT_NAME "example")
 project (${PROJECT_NAME})
@@ -15,7 +15,7 @@ set (warning_flags "${warning_flags} -pedantic")
 set (warning_flags "${warning_flags} -Wshadow")
 
 # Warn about conversions
-set (warning_flags "${warning_flags} -Wconversion")
+set (warning_flags "${warning_flags} -Wconversion -Wsign-conversion")
 
 # Warn comparing floating numbers
 set (warning_flags "${warning_flags} -Wfloat-equal")
@@ -28,6 +28,9 @@ set (warning_flags "${warning_flags} -Winit-self")
 
 # Ignore system headers issues
 set (warning_flags "${warning_flags} -Wno-system-headers")
+
+# Find unused code
+set (warning_flags "${warning_flags} -Wunreachable-code")
 
 
 # Use pretty output for Clang messages
