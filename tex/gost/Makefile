@@ -17,7 +17,7 @@ preview:
 
 clean:
 	$(DOCUMENT_BUILDER) -C
-	make clean-minted
+	+make clean-minted
 
 clean-minted:
 	rm -f $(MAIN_DOCUMENT_FILENAME).pyg
