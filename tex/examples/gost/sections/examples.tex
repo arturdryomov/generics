@@ -1,0 +1,59 @@
+\section{Текст}
+
+  \lipsum[1-5]
+
+\section{Форматирование}
+
+  Кавычки: \enquote{Текст \enquote{Текст}}.
+
+  Выделение:
+
+  \begin{itemize}
+
+    \item \textit{курсив};
+
+    \item \textbf{полужирный текст};
+
+    \item \underline{подчёркнутый текст}.
+
+  \end{itemize}
+
+\section{Таблицы}
+
+  \begin{longtable}{| p{0.48\textwidth} | p{0.48\textwidth} |}
+
+    \caption{Широкая таблица} \label{table:wide} \\
+
+    \hline
+
+    \textbf{Первый столбец} & \textbf{Второй столбец} \\ \hline
+
+    \lipsum[1] & \lipsum[2] \\ \hline
+
+  \end{longtable}
+
+  \begin{longtable}{| c | c |}
+
+    \caption{Узкая таблица} \label{table:narrow} \\
+
+    \hline
+
+    \textbf{Первый столбец} & \textbf{Второй столбец} \\ \hline
+
+    1 & 2 \\ \hline
+
+    1 & 2 \\ \hline
+
+    1 & 2 \\ \hline
+
+  \end{longtable}
+
+\section{Исходный код}
+
+  \begin{source}
+
+    \caption{Исходный код документа} \label{code:document}
+
+    \file{tex}{report.tex}
+
+  \end{source}

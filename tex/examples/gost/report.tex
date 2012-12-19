@@ -1,64 +1,37 @@
 \input{../../preamble/gost.tex}
 
+\graphicspath{{./images/}}
 
-\newcommand{\subject}{Пояснительная записка}
+
+\newcommand{\subject}{Курсовая работа}
 
 \hypersetup {
-  pdfsubject={\subject},
-  pdftitle={\subject}
+  pdfsubject = {\subject},
+  pdftitle = {\subject}
 }
 
 
-\ESKDsignature{КР-0910136-ДО-2011}
-\ESKDtitle{Пояснительная записка}
+% Bulk text generator, should be removed.
+\usepackage{lipsum}
+
+
+\ESKDsignature{\subject}
+\ESKDtitle{Тема курсовой работы}
 \ESKDauthor{Дрёмов~А.~Э.}
-\ESKDchecker{X~X.~X.}
-\ESKDgroup{ПГУ, группа 09-ИТ-2}
+\ESKDchecker{Шариков~П.~П.}
+\ESKDgroup{УО <<ПГУ>>, группа 09-ИТ-2}
 
 
 \begin{document}
 
-  \ESKDthisStyle{title}
-  \includepdf[pages=-]{title/title.pdf}
+  % First page is a title.
 
+  % Second page is an assignment.
 
-  % Contents is third list (second is assignment)
   \setcounter{page}{3}
   \ESKDthisStyle{formII}
   \tableofcontents
 
-  
-  \section*{Введение}
-  \addcontentsline{toc}{section}{Введение}
-
-  \section{Обзор проблемной области}
-
-    \subsection{Аналоги}
-
-    \subsection{Технологии}
-
-  \section{Технический проект}
-
-    \subsection{Математическое обеспечение}
-
-    \subsection{Программное обеспечение}
-
-    \subsection{Функциональная структура}
-
-  \section{Реализация, тестирование, отладка}
-
-    \subsection{Особенности реализации}
-
-    \subsection{Результаты тестирования}
-
-  \section*{Заключение}
-  \addcontentsline{toc}{section}{Заключение}
-
-
-  \nocite{*}
-  \bibliography{literature}
-
-
-  \ESKDappendix{Обязательное}{Диаграмма}
+  \input{sections/examples}
 
 \end{document}

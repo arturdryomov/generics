@@ -19,6 +19,9 @@
 %% Use nice fractions
 \usepackage{nicefrac}
 
+%% Provide clever quotes in quotes
+\usepackage[style = russian]{csquotes}
+
 %% Cyrillic special for ESKD
 %% Also ESKD uses Babel, so no Polyglossia here
 \usepackage{xecyr}
@@ -144,7 +147,7 @@
 
 %% PDF information
 \hypersetup {
-  pdfauthor = {Дрёмов Артур},
+  pdfauthor = {Artur Dryomov},
   pdfcreator = {XeTeX}
 }
 
@@ -158,21 +161,6 @@
 %% Use long tables
 \usepackage{longtable}
 
-%% Table alignment
-\usepackage{tabularx}
-\newcolumntype{L}{>{\raggedright\arraybackslash}X}
-\newcolumntype{P}[1]{>{\raggedright\arraybackslash}p{#1}}
-
-
-
-% Other options
-
-%% Provide PDF files inserting
-\usepackage[final]{pdfpages}
-
-%% GOST UTF-8 custom style for listing literature
-\bibliographystyle{utf8gost71u}
-
 
 
 % Custom commands
@@ -181,21 +169,21 @@
 \newcommand{\term}{\textit}
 
 %% Expression
-\newcommand{\expr}{\textit}
+\newcommand{\expression}{\textit}
 
 %% File system
-\newcommand{\fs}{\textit}
+\newcommand{\uri}{\textit}
 
 %% Code
 \newcommand{\code}{\texttt}
 
 %% Inline code
 \usepackage{minted}
-\newminted[inlinecode]{text}{fontsize=\footnotesize}
+\newminted[inlinecode]{text}{fontsize = \footnotesize}
 
 %% Source code from file
 \usemintedstyle{tango}
-\newcommand{\source}[2]
+\newcommand{\file}[2]
 {
   \inputminted[
     frame = single,
@@ -207,6 +195,17 @@
   ]{#1}{#2}
 }
 
+%% Source code environment
+\renewcommand\listingscaption{Листинг}
+\usepackage{caption}
+\newenvironment{source}{
+  \captionsetup{
+    type = listing,
+    position = top,
+    indention = 5em
+  }
+}{}
+
 %% Image
 \usepackage{graphicx}
 \newcommand{\image}[2][1]
@@ -214,55 +213,4 @@
   \begin{center}
     \includegraphics[width = #1\textwidth]{#2}
   \end{center}
-}
-
-
-
-% ESKDX hacks
-
-%% Make font used in main inscription smaller
-\renewcommand{\ESKDfontVII}{\ESKDfontV}
-
-%% Remove name of appendix from top of the page, it will be in inscription
-\makeatletter
-\renewcommand{\ESKDappendix}[2]{
-  \ESKDclearDoublePage
-  \refstepcounter{appendix}
-  \setcounter{point}{0}
-  \ifESKD@point@style@single
-    \renewcommand{\thepoint}{\theappendix.\arabic{point}}
-  \fi
-  \setcounter{section}{0}
-  \renewcommand{\thesection}{\theappendix.\arabic{section}}
-  \setcounter{equation}{0}
-  \renewcommand{\theequation}{\theappendix.\arabic{equation}}
-  \setcounter{figure}{0}
-  \renewcommand{\thefigure}{\theappendix.\arabic{figure}}
-  \setcounter{table}{0}
-  \renewcommand{\thetable}{\theappendix.\arabic{table}}
-  \addcontentsline{toc}{section}{\appendixname\ \theappendix\ #2}
-  \begin{list}{}{
-    \setlength{\itemindent}{0mm}
-    \setlength{\labelwidth}{0mm}
-    \setlength{\labelsep}{0mm}
-    \setlength{\leftmargin}{0mm}
-    \setlength{\topsep}{0mm}
-    \setlength{\parskip}{0mm}
-    \setlength{\partopsep}{0mm}
-    \setlength{\itemsep}{0mm}
-    \setlength{\parsep}{0mm}}
-    \item\centering\appendixname\ \theappendix
-    \ifx#1\@empty\else\\(#1)\fi\\
-  \end{list}%
-  \par\nobreak\addvspace{\ESKDappendixSkip}}
-\makeatother
-
-%% Appendix configuration: main inscription is second GOST form,
-%% place appendix name in inscription
-\let\ESKDappendixOld\ESKDappendix
-\renewcommand{\ESKDappendix}[2]
-{
-  \ESKDappendixOld{#1}{#2}
-  \ESKDthisStyle{formII}
-  \ESKDcolumnI{#2}
 }
