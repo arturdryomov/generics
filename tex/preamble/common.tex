@@ -16,6 +16,9 @@
 %% Use nice fractions
 \usepackage{nicefrac}
 
+%% Provide clever quotes in quotes
+\usepackage[style = russian]{csquotes}
+
 
 
 % Polyglossia
@@ -30,8 +33,8 @@
 
 \setmainfont{Linux Libertine}
 
-\newfontfamily\cyrillicfontsf[Scale = MatchLowercase]{Droid Sans}
-\setsansfont{Droid Sans}
+\newfontfamily\cyrillicfontsf[Scale = MatchLowercase]{PT Sans}
+\setsansfont{PT Sans}
 
 \newfontfamily\cyrillicfonttt[Scale = MatchLowercase]{Droid Sans Mono}
 \setmonofont{Droid Sans Mono}
@@ -131,7 +134,7 @@
 
 %% PDF information
 \hypersetup {
-  pdfauthor = {Дрёмов Артур},
+  pdfauthor = {Artur Dryomov},
   pdfcreator = {XeTeX}
 }
 
@@ -145,17 +148,6 @@
 
 %% Use long tables
 \usepackage{longtable}
-
-%% Table alignment
-\usepackage{tabularx}
-\newcolumntype{L}{>{\raggedright\arraybackslash}X}
-\newcolumntype{P}[1]{>{\raggedright\arraybackslash}p{#1}}
-
-
-
-% Bibliography
-
-\usepackage[backend = biber]{biblatex}
 
 
 
@@ -183,10 +175,10 @@
 \newcommand{\term}{\textit}
 
 %% Expression
-\newcommand{\expr}{\textit}
+\newcommand{\expression}{\textit}
 
 %% File system
-\newcommand{\fs}{\textit}
+\newcommand{\uri}{\textit}
 
 %% Code
 \newcommand{\code}{\texttt}
@@ -197,7 +189,7 @@
 
 %% Source code from file
 \usemintedstyle{tango}
-\newcommand{\source}[2]
+\newcommand{\file}[2]
 {
   \inputminted[
     frame = single,
@@ -208,6 +200,17 @@
     fontsize = \footnotesize
   ]{#1}{#2}
 }
+
+%% Source code environment
+\renewcommand\listingscaption{Листинг}
+\usepackage{caption}
+\newenvironment{source}{
+  \captionsetup{
+    type = listing,
+    position = top,
+    indention = 5em
+  }
+}{}
 
 %% Image
 \usepackage{graphicx}

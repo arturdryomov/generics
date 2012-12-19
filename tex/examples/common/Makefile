@@ -18,11 +18,6 @@ preview:
 clean:
 	$(DOCUMENT_BUILDER) -C
 	make clean-minted
-	make clean-biblatex
 
 clean-minted:
 	rm -f $(MAIN_DOCUMENT_FILENAME).pyg
-
-clean-biblatex:
-	rm -f $(MAIN_DOCUMENT_FILENAME).run.xml
-	rm -f $(MAIN_DOCUMENT_FILENAME).bbl

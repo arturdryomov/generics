@@ -1,47 +1,82 @@
 \input{../../preamble/common.tex}
 
 \graphicspath{{./images/}}
-\addbibresource{literature.bib}
 
 
-\newcommand{\subject}{Отчёт по выполнению лабораторной работы \textnumero\ 1}
+\newcommand{\subject}{Пример использования \TeX}
 
-% PDF information
 \hypersetup {
   pdfsubject = {\subject},
   pdftitle = {\subject}
 }
 
 
+\usepackage{lipsum}
+
+
 \begin{document}
-
-  \input{title}
-  \setcounter{page}{2}
-
 
   \tableofcontents
   \newpage
 
+  \section{Текст}
 
-  \section{Цели занятия}
+    \lipsum[1-5]
 
-  \section{Описание проделанной работы}
+  \section{Форматирование}
 
-    Исходные коды приведены в~разделе <<\nameref{sec:addon}>>.
+    Кавычки: \enquote{Текст \enquote{Текст}}.
 
-  \section{Вывод}
+    Выделение:
 
+    \begin{itemize}
 
-  \newpage
-  \nocite{*}
-  \printbibliography
+      \item \textit{курсив};
 
+      \item \textbf{полужирный текст};
 
-  \newpage
-  \section{Приложение} \label{sec:addon}
+      \item \underline{подчёркнутый текст}.
 
-    \subsection{Реализация}
+    \end{itemize}
 
-      \source{tex}{report.tex}
+  \section{Таблицы}
+
+    \begin{longtable}{| p{0.5\textwidth} | p{0.5\textwidth} |}
+
+      \caption{Широкая таблица} \label{table:wide} \\
+
+      \hline
+
+      \textbf{Первый столбец} & \textbf{Второй столбец} \\ \hline
+
+      \lipsum[1] & \lipsum[2] \\ \hline
+
+    \end{longtable}
+
+    \begin{longtable}{| c | c |}
+
+      \caption{Узкая таблица} \label{table:narrow} \\
+
+      \hline
+
+      \textbf{Первый столбец} & \textbf{Второй столбец} \\ \hline
+
+      1 & 2 \\ \hline
+
+      1 & 2 \\ \hline
+
+      1 & 2 \\ \hline
+
+    \end{longtable}
+
+  \section{Исходный код}
+
+    \begin{source}
+
+      \caption{Исходный код документа} \label{code:document}
+
+      \file{tex}{report.tex}
+
+    \end{source}
 
 \end{document}
