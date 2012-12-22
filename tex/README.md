@@ -6,12 +6,8 @@ distributions.
 ## TeX Live Packages
 
 * `texlive-core`
-* `texlive-langcyrillic`
 * `texlive-latexextra`
-* `texlive-bibtexextra`
-
-Package `texlive-bibtexextra` used only for `common` preamble for BibLaTeX and
-Biber support. `gost` preamble uses BibTeX.
+* `texlive-langcyrillic`
 
 ## Fonts
 
@@ -19,8 +15,8 @@ Biber support. `gost` preamble uses BibTeX.
 * `ttf-droid`
 * `ttf-asana-math` (AUR)
 
-Asana Math also included in a `texlive-fontsextra` package, but it is very huge.
-If you have it installed, simply just don’t install `ttf-asana-math`.
+Asana Math is also included in the `texlive-fontsextra` package, but it is very huge.
+If you have it installed, simply don’t install the `ttf-asana-math` package.
 
 ## Other tools
 
