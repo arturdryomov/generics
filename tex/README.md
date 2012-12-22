@@ -11,14 +11,21 @@ distributions.
 
 ## Fonts
 
+### `common`
+
 * `ttf-linux-libertine`
 * `ttf-droid`
+* `ttf-paratype` (AUR)
 * `ttf-asana-math` (AUR)
 
 Asana Math is also included in the `texlive-fontsextra` package, but it is very huge.
 If you have it installed, simply don’t install the `ttf-asana-math` package.
 
-## Other tools
+### `gost`
+
+* `otf-cm-unicode` (AUR)
+
+## Tools
 
 * `python2-pygments`
 
